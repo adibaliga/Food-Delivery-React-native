@@ -18,14 +18,15 @@ const ProductDetailsScreen = () => {
     console.warn("Add to cart");
   };
   return (
-    <View>
+    <View style={styles.container}>
       <Stack.Screen options={{ title: product.name }} />
       <Image
         source={{ uri: product.image || defaultPizzaImage }}
         style={styles.image}
+        resizeMode="contain"
       />
 
-      <Text>Select size</Text>
+      <Text style={styles.subtitle}>Select size</Text>
       <View style={styles.sizes}>
         {sizes.map((size) => (
           <Pressable
@@ -50,7 +51,7 @@ const ProductDetailsScreen = () => {
         ))}
       </View>
 
-      <Text style={styles.price}>${product.price}</Text>
+      <Text style={styles.price}>Price: ${product.price.toFixed(2)}</Text>
       <Button onPress={addToCart} text="Add to cart" />
     </View>
   );
@@ -64,6 +65,11 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     aspectRatio: 1,
+    alignSelf: "center",
+  },
+  subtitle: {
+    marginVertical: 10,
+    fontWeight: "600",
   },
   price: { fontSize: 18, fontWeight: "bold", marginTop: "auto" },
   sizes: {
@@ -82,6 +88,7 @@ const styles = StyleSheet.create({
   sizeText: {
     fontSize: 20,
     fontWeight: "500",
+    color: "black",
   },
 });
 export default ProductDetailsScreen;
